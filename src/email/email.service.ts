@@ -30,8 +30,8 @@ export class EmailService {
       subject: '가입 인증 메일',
       html: `
         가입확인 버튼을 누르시면 가입 인증이 완료됩니다.<br />
-        <form action="${url}" method="POST">
-          <button type="submit">가입확인</button>
+        <form action='${url}' method='POST'>
+          <button type='submit'>가입확인</button>
         </form>
       `,
     };

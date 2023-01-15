@@ -7,6 +7,25 @@ import { UserInfo } from './user-info';
 export class UsersService {
   constructor(private emailService: EmailService) {}
 
+  private checkUserExists(email: string) {
+    return false; // TODO: DB 연동 후 구현
+  }
+
+  private saveUser(
+    name: string,
+    email: string,
+    password: string,
+    signupVerifyToken: string,
+  ) {
+    return; // TODO: DB 연동 후 구현
+  }
+
+  private async sendMemberJoinEmail(email: string, signupVerifyToken: string) {
+    await this.emailService.sendMemberJoinVerification(
+      email,
+      signupVerifyToken,
+    );
+  }
   async createUser(name: string, email: string, password: string) {
     await this.checkUserExists(email);
 
@@ -38,25 +57,5 @@ export class UsersService {
     // 2. 조회된 데이터를 UserInfo 타입으로 응답
 
     throw new Error('Method not implemented.');
-  }
-
-  private checkUserExists(email: string) {
-    return false; // TODO: DB 연동 후 구현
-  }
-
-  private saveUser(
-    name: string,
-    email: string,
-    password: string,
-    signupVerifyToken: string,
-  ) {
-    return; // TODO: DB 연동 후 구현
-  }
-
-  private async sendMemberJoinEmail(email: string, signupVerifyToken: string) {
-    await this.emailService.sendMemberJoinVerification(
-      email,
-      signupVerifyToken,
-    );
   }
 }
