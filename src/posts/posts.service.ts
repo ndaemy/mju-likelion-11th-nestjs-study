@@ -90,4 +90,9 @@ export class PostsService {
       return post;
     });
   }
+
+  remove(id: string) {
+    const targetPost = this.findOne(id);
+    this.posts = this.posts.filter((post) => post.id !== targetPost.id);
+  }
 }
