@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { validate as uuidValidate } from 'uuid';
+import { v4 as uuidv4, validate as uuidValidate } from 'uuid';
 
 export type Post = {
   id: string;
@@ -34,6 +34,19 @@ const INITIAL_POSTS: Post[] = [
 @Injectable()
 export class PostsService {
   private posts: Post[] = INITIAL_POSTS;
+
+  create(caption: string) {
+    const post = {
+      id: uuidv4(),
+      caption,
+      writer: {
+        // TODO: 추후 인증 부분 작성 후 수정해야 함
+        email: 'yuyaebean@gmail.com',
+      },
+    };
+
+    this.posts.push(post);
+  }
 
   findAll() {
     return this.posts;
