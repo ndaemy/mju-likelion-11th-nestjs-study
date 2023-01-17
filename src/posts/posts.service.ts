@@ -12,6 +12,7 @@ export type Post = {
   writer: {
     email: string;
   };
+  createdAt: Date;
 };
 
 const INITIAL_POSTS: Post[] = [
@@ -21,6 +22,7 @@ const INITIAL_POSTS: Post[] = [
     writer: {
       email: 'yuyaebean@gmail.com',
     },
+    createdAt: new Date(),
   },
   {
     id: 'd0eb7cf3-f258-49f9-8497-efd93daa5f84',
@@ -28,6 +30,7 @@ const INITIAL_POSTS: Post[] = [
     writer: {
       email: 'harksulim@gmail.com',
     },
+    createdAt: new Date(),
   },
 ];
 
@@ -43,6 +46,7 @@ export class PostsService {
         // TODO: 추후 인증 부분 작성 후 수정해야 함
         email: 'yuyaebean@gmail.com',
       },
+      createdAt: new Date(),
     };
 
     this.posts.push(post);
