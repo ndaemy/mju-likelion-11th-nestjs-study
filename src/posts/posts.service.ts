@@ -13,7 +13,10 @@ export type Post = {
     email: string;
   };
   createdAt: Date;
+  updatedAt: Date;
 };
+
+const currentTime = new Date();
 
 const INITIAL_POSTS: Post[] = [
   {
@@ -22,7 +25,8 @@ const INITIAL_POSTS: Post[] = [
     writer: {
       email: 'yuyaebean@gmail.com',
     },
-    createdAt: new Date(),
+    createdAt: currentTime,
+    updatedAt: currentTime,
   },
   {
     id: 'd0eb7cf3-f258-49f9-8497-efd93daa5f84',
@@ -30,7 +34,8 @@ const INITIAL_POSTS: Post[] = [
     writer: {
       email: 'harksulim@gmail.com',
     },
-    createdAt: new Date(),
+    createdAt: currentTime,
+    updatedAt: currentTime,
   },
 ];
 
@@ -39,6 +44,8 @@ export class PostsService {
   private posts: Post[] = INITIAL_POSTS;
 
   create(caption: string) {
+    const currentTime = new Date();
+
     const post = {
       id: uuidv4(),
       caption,
@@ -46,7 +53,8 @@ export class PostsService {
         // TODO: 추후 인증 부분 작성 후 수정해야 함
         email: 'yuyaebean@gmail.com',
       },
-      createdAt: new Date(),
+      createdAt: currentTime,
+      updatedAt: currentTime,
     };
 
     this.posts.push(post);
@@ -68,5 +76,18 @@ export class PostsService {
     }
 
     return post;
+  }
+
+  update(id: string, caption: string) {
+    const targetPost = this.findOne(id);
+    targetPost.caption = caption;
+    targetPost.updatedAt = new Date();
+
+    this.posts = this.posts.map((post) => {
+      if (post.id === id) {
+        return targetPost;
+      }
+      return post;
+    });
   }
 }
