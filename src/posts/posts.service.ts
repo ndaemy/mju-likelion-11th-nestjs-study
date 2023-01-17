@@ -69,7 +69,7 @@ export class PostsService {
       throw new BadRequestException('id is not valid form');
     }
 
-    const post = this.posts.find((post) => post.id === id);
+    const post = this.posts.find(post => post.id === id);
 
     if (!post) {
       throw new NotFoundException(`Post with id ${id} not found`);
@@ -83,7 +83,7 @@ export class PostsService {
     targetPost.caption = caption;
     targetPost.updatedAt = new Date();
 
-    this.posts = this.posts.map((post) => {
+    this.posts = this.posts.map(post => {
       if (post.id === id) {
         return targetPost;
       }
@@ -93,6 +93,6 @@ export class PostsService {
 
   remove(id: string) {
     const targetPost = this.findOne(id);
-    this.posts = this.posts.filter((post) => post.id !== targetPost.id);
+    this.posts = this.posts.filter(post => post.id !== targetPost.id);
   }
 }
