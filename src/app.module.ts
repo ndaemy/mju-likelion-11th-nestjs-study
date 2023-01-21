@@ -5,9 +5,10 @@ import { AppService } from './app.service';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
 import { EmailService } from './email/email.service';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
+  imports: [ConfigModule.forRoot(), PostsModule],
   controllers: [AppController, UsersController],
   providers: [AppService, UsersService, EmailService],
 })
