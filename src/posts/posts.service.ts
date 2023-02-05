@@ -7,7 +7,7 @@ import { v4 as uuidv4, validate as uuidValidate } from 'uuid';
 
 export type Post = {
   id: string;
-  caption: string;
+  content: string;
   // TODO: 이 부분은 추후 user 모델과 연결해야 함
   writer: {
     email: string;
@@ -21,7 +21,7 @@ const currentTime = new Date();
 const INITIAL_POSTS: Post[] = [
   {
     id: '84ac5723-5170-4dc1-b49a-c40ee8264d36',
-    caption: 'Hello World!',
+    content: 'Hello World!',
     writer: {
       email: 'yuyaebean@gmail.com',
     },
@@ -30,7 +30,7 @@ const INITIAL_POSTS: Post[] = [
   },
   {
     id: 'd0eb7cf3-f258-49f9-8497-efd93daa5f84',
-    caption: 'KT 왜 씀',
+    content: 'KT 왜 씀',
     writer: {
       email: 'harksulim@gmail.com',
     },
@@ -43,12 +43,12 @@ const INITIAL_POSTS: Post[] = [
 export class PostsService {
   private posts: Post[] = INITIAL_POSTS;
 
-  create(caption: string) {
+  create(content: string) {
     const currentTime = new Date();
 
     const post = {
       id: uuidv4(),
-      caption,
+      content,
       writer: {
         // TODO: 추후 인증 부분 작성 후 수정해야 함
         email: 'yuyaebean@gmail.com',
@@ -78,9 +78,9 @@ export class PostsService {
     return post;
   }
 
-  update(id: string, caption: string) {
+  update(id: string, content: string) {
     const targetPost = this.findOne(id);
-    targetPost.caption = caption;
+    targetPost.content = content;
     targetPost.updatedAt = new Date();
 
     this.posts = this.posts.map(post => {

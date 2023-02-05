@@ -16,8 +16,8 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Post()
-  create(@Body() { caption }: CreatePostDto) {
-    return this.postsService.create(caption);
+  create(@Body() { content }: CreatePostDto) {
+    return this.postsService.create(content);
   }
 
   @Get()
@@ -31,8 +31,8 @@ export class PostsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() { caption }: UpdatePostDto) {
-    return this.postsService.update(id, caption);
+  update(@Param('id') id: string, @Body() { content }: UpdatePostDto) {
+    return this.postsService.update(id, content);
   }
 
   @Delete(':id')

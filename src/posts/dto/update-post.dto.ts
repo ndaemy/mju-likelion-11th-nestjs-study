@@ -1,3 +1,3 @@
 export class UpdatePostDto {
-  caption: string;
+  content: string;
 }
